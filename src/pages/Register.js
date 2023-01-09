@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import RegisterForm from '../components/RegisterForm';
 
-const CustomBox = styled(Box)`
+export const CustomBox = styled(Box)`
   max-width: 400px;
   margin: 25px auto 0;
   padding: 15px;

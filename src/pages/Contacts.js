@@ -1,19 +1,8 @@
 import Filter from 'components/Filter';
 import Form from '../components/Form';
 import ContactsList from '../components/ContactsList';
-import { Box, Typography } from '@mui/material';
-import styled from '@emotion/styled';
-
-const CustomBox = styled(Box)`
-  max-width: 400px;
-  margin: 25px auto 0;
-  padding: 15px;
-  background-image: linear-gradient(
-    rgba(200, 200, 200, 0.7),
-    rgba(200, 200, 200, 0.7)
-  );
-  border-radius: 10px;
-`;
+import { Typography } from '@mui/material';
+import { CustomBox } from './Register';
 
 export default function Contacts() {
   return (
