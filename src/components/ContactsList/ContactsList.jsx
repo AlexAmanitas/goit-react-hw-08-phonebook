@@ -14,7 +14,6 @@ const ContactsList = () => {
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
-  console.log(items, isLoading, error, filter);
 
   useEffect(() => {
     if (filter === '') {
@@ -27,8 +26,6 @@ const ContactsList = () => {
   const handleOnClick = evt => {
     dispatch(deleteContacts(evt.currentTarget.id));
   };
-
-  console.log('contacts');
 
   return (
     <List>

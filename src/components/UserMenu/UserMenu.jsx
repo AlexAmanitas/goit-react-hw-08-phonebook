@@ -15,7 +15,6 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const name = user.name[0].toUpperCase() + user.name.slice(1);
-  console.log(name);
 
   return (
     <CustomMenu>
