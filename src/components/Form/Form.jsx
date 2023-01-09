@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { addContacts } from 'redux/contacts/operations';
 import { Box, Button, TextField } from '@mui/material';
-import uniqid from 'uniqid';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -9,18 +8,23 @@ const Form = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
+
     dispatch(
       addContacts({
-        id: uniqid(),
         name: form.elements.name.value,
-        phone: form.elements.number.value,
+        number: form.elements.number.value,
       })
     );
     form.reset();
   };
 
   return (
-    <Box component="form" action="" onSubmit={handleSubmit}>
+    <Box
+      component="form"
+      action=""
+      onSubmit={handleSubmit}
+      sx={{ display: 'flex', flexDirection: 'column' }}
+    >
       <TextField
         id="outlined-basic"
         label="Name"

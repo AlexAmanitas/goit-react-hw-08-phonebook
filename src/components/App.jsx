@@ -1,21 +1,69 @@
-import Form from 'components/Form';
-import Filter from 'components/Filter';
-import Contacts from 'components/Contacts';
-import { Box, Typography } from '@mui/material';
+// import Form from 'components/Form';
+// import Filter from 'components/Filter';
+// import Contacts from 'components/Contacts';
+
+import { Layout } from './Layout';
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { Route, Routes } from 'react-router-dom';
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
-  return (
-    <Box sx={{ pt: '20px' }}>
-      <Typography component="h2" variant="h4" sx={{ mb: '10px' }}>
-        Phonebook
-      </Typography>
-      <Form />
-      <Typography component="h2" variant="h4" sx={{ mb: '10px', mt: '20px' }}>
-        Contacts
-      </Typography>
-      <Filter />
-      <Contacts />
-    </Box>
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  // const state = useSelector(state => state.auth);
+  // console.log(state.isRefreshing);
+  // // const { isRefreshing } = state;
+  console.log(isRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/goit-react-hw-08-phonebook" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              redirectTo="/goit-react-hw-08-phonebook/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute
+              redirectTo="/goit-react-hw-08-phonebook/contacts"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute
+              redirectTo="/goit-react-hw-08-phonebook/login"
+              component={<ContactsPage />}
+            />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 

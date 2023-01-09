@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 // import { filterContacts } from 'redux/operations';
 import { selectFilter } from 'redux/contacts/selectors';
@@ -13,7 +13,7 @@ const Filter = () => {
   };
 
   return (
-    <Box>
+    <>
       <TextField
         variant="outlined"
         label="Find contacts by name"
@@ -21,8 +21,9 @@ const Filter = () => {
         type="text"
         value={filter}
         onChange={handleChange}
+        sx={{ width: '100%' }}
       />
-    </Box>
+    </>
   );
 };
 

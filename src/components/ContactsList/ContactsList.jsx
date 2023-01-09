@@ -9,11 +9,12 @@ import {
 } from 'redux/contacts/operations';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';
 
-const Contacts = () => {
+const ContactsList = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
+  console.log(items, isLoading, error, filter);
 
   useEffect(() => {
     if (filter === '') {
@@ -34,14 +35,14 @@ const Contacts = () => {
       {isLoading && <b>Loading contacts...</b>}
       {error && <b>{error}</b>}
       {items.map(el => {
-        const { name, phone, id } = el;
+        const { name, number, id } = el;
         return (
           <ListItem key={id} alignItems="flex-start">
             <ListItemText variant="body1" component="span" sx={{ mr: '10px' }}>
               {name}
             </ListItemText>
             <ListItemText variant="body1" component="span" sx={{ mr: '10px' }}>
-              {phone}
+              {number}
             </ListItemText>
             <IconButton id={id} type="button" onClick={handleOnClick}>
               <DeleteIcon />
@@ -53,4 +54,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsList;
