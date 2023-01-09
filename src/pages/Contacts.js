@@ -6,9 +6,13 @@ import styled from '@emotion/styled';
 
 const CustomBox = styled(Box)`
   max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 15px;
+  margin: 25px auto 0;
+  padding: 15px;
+  background-image: linear-gradient(
+    rgba(200, 200, 200, 0.7),
+    rgba(200, 200, 200, 0.7)
+  );
+  border-radius: 10px;
 `;
 
 export default function Contacts() {

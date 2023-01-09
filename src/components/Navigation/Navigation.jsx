@@ -19,8 +19,8 @@ export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <Box component="nav">
-      <StyledLink to="/goit-react-hw-08-phonebook">Home</StyledLink>
+    <Box>
+      <StyledLink to="/goit-react-hw-08-phonebook/">Home</StyledLink>
       {isLoggedIn && (
         <StyledLink to="/goit-react-hw-08-phonebook/contacts">
           Contacts
@@ -29,3 +29,6 @@ export const Navigation = () => {
     </Box>
   );
 };
+
+//       <StyledLink to="/goit-react-hw-08-phonebook/">Home</StyledLink>
+//  важна палочка "/" после -phonebook "/" !!!  Без неё Home был всё время актив

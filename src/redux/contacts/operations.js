@@ -45,8 +45,12 @@ export const filterContacts = createAsyncThunk(
   'contacts/filterContacts',
   async (arg, thunkAPI) => {
     try {
-      const response = await axios.get(`/contacts?filter=${arg}`);
-      return response.data;
+      const response = await axios.get('/contacts');
+      console.log(response.data);
+      const filteredContacts = response.data.filter(contact => {
+        return contact.name.toLowerCase().includes(arg.toLowerCase());
+      });
+      return filteredContacts;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
