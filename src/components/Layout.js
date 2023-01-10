@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { AppBarComponent } from './AppBar/AppBar';
 import { Suspense } from 'react';
-import { Box, styled, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { Alert, Box, styled, Typography } from '@mui/material';
 
 const CustomBox = styled(Box)`
   height: 100vh;
@@ -12,8 +13,11 @@ const CustomBox = styled(Box)`
 `;
 
 export const Layout = () => {
+  const error = useSelector(state => state.auth.error);
+  console.log(error);
   return (
     <CustomBox>
+      {error && <Alert>{error}</Alert>}
       <AppBarComponent />
       <Suspense fallback={<Typography>Loading...</Typography>}>
         <Outlet />

@@ -1,4 +1,3 @@
-import { Alert } from '@mui/material';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -14,10 +13,6 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-const PushAlert = () => {
-  return <Alert severity="warning">Something Going Wrong</Alert>;
-};
-
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
@@ -28,7 +23,6 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      <Alert severity="warning">Something Going Wrong</Alert>;
       return rejectWithValue(error.message);
     }
   }
@@ -91,7 +85,6 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
-      PushAlert();
       console.log('error refresh');
       return rejectWithValue(error.message);
     }
