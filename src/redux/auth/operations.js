@@ -73,6 +73,7 @@ export const refreshUser = createAsyncThunk(
     // Reading the token from the state via getState()
     const state = getState();
     const persistedToken = state.auth.token;
+    console.log('token', persistedToken, state);
 
     if (persistedToken === null) {
       // If there is no token, exit without performing any request

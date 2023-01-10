@@ -5,7 +5,7 @@
 import { Layout } from './Layout';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectToken } from 'redux/auth/selectors';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
@@ -19,10 +19,11 @@ const ContactsPage = lazy(() => import('../pages/Contacts'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) dispatch(refreshUser());
+  }, [dispatch, token]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
