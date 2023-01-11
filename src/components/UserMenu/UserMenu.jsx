@@ -14,6 +14,7 @@ const CustomMenu = styled(Box)`
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  if (user === undefined) return;
   const name = user.name[0].toUpperCase() + user.name.slice(1);
 
   return (

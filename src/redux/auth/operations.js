@@ -22,8 +22,8 @@ export const register = createAsyncThunk(
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    } catch {
+      return rejectWithValue('User already registered');
     }
   }
 );
@@ -39,9 +39,11 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
+
       return res.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    } catch {
+      // console.log(getState().auth.error);
+      return rejectWithValue('Incorrect login or password');
     }
   }
 );

@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Alert } from '@mui/material';
 import styled from '@emotion/styled';
 import RegisterForm from '../components/RegisterForm';
+import { useSelector } from 'react-redux';
 
 export const CustomBox = styled(Box)`
   max-width: 400px;
@@ -14,8 +15,14 @@ export const CustomBox = styled(Box)`
 `;
 
 export default function Register() {
+  const error = useSelector(state => state.auth.error);
   return (
     <CustomBox>
+      {error && (
+        <Alert severity="info" color="info">
+          {error}
+        </Alert>
+      )}
       <Typography variant="" component="h2" sx={{ mb: '15px' }}>
         Registration
       </Typography>
