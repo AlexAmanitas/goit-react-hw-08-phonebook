@@ -1,7 +1,8 @@
 import { Box, Typography, Alert } from '@mui/material';
 import styled from '@emotion/styled';
 import RegisterForm from '../components/RegisterForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { reset } from 'redux/auth/operations';
 
 export const CustomBox = styled(Box)`
   max-width: 400px;
@@ -15,8 +16,15 @@ export const CustomBox = styled(Box)`
 `;
 
 export default function Register() {
-  console.log('RegisterPage');
   const error = useSelector(state => state.auth.error);
+  const dispatch = useDispatch();
+  if (error) {
+    setTimeout(() => {
+      dispatch(reset());
+    }, 3000);
+  }
+  console.log('RegisterPage');
+
   return (
     <CustomBox>
       {error && (
