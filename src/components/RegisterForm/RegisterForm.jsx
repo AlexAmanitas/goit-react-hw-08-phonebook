@@ -19,6 +19,8 @@ const RegisterForm = () => {
     form.reset();
   };
 
+  console.log('RegisterFormComponent');
+
   return (
     <Box
       component="form"

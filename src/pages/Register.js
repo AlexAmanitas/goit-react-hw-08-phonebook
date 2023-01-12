@@ -15,6 +15,7 @@ export const CustomBox = styled(Box)`
 `;
 
 export default function Register() {
+  console.log('RegisterPage');
   const error = useSelector(state => state.auth.error);
   return (
     <CustomBox>

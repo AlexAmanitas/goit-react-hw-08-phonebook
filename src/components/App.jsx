@@ -25,6 +25,8 @@ export const App = () => {
     if (token) dispatch(refreshUser());
   }, [dispatch, token]);
 
+console.log('AppComponent')
+
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (

@@ -18,7 +18,7 @@ const StyledAppBar = styled(AppBar)`
 
 export const AppBarComponent = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  console.log('AppBarComponent');
   return (
     <StyledAppBar position="static">
       <Navigation />

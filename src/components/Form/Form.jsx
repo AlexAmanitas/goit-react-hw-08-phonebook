@@ -18,6 +18,8 @@ const Form = () => {
     form.reset();
   };
 
+  console.log('FormComponent');
+
   return (
     <Box
       component="form"

@@ -7,6 +7,7 @@ const CustomBox = styled(Box)`
 `;
 
 export default function Home() {
+  console.log('HomePage');
   return (
     <CustomBox>
       <Typography

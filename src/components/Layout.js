@@ -13,6 +13,7 @@ const CustomBox = styled(Box)`
 `;
 
 export const Layout = () => {
+  console.log('Layout');
   return (
     <CustomBox>
       <AppBarComponent />

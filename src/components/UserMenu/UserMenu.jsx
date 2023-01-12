@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { selectUser } from 'redux/auth/selectors';
 
-// import { useAuth } from 'hooks';
-// import css from './UserMenu.module.css';
-
 const CustomMenu = styled(Box)`
   display: flex;
   align-items: baseline;
@@ -16,7 +13,7 @@ export const UserMenu = () => {
   const user = useSelector(selectUser);
   if (user === undefined) return;
   const name = user.name[0].toUpperCase() + user.name.slice(1);
-
+  console.log('UserMenuComponent');
   return (
     <CustomMenu>
       <Typography component="p">Welcome, {name}</Typography>

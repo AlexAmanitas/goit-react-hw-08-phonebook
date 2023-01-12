@@ -17,7 +17,7 @@ const StyledLink = styled(NavLink)`
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  console.log('NavigationComponent');
   return (
     <Box>
       <StyledLink to="/goit-react-hw-08-phonebook/">Home</StyledLink>

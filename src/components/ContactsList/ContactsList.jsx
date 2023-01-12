@@ -27,6 +27,8 @@ const ContactsList = () => {
     dispatch(deleteContacts(evt.currentTarget.id));
   };
 
+  console.log('ContactListComponent');
+
   return (
     <List>
       {isLoading && <b>Loading contacts...</b>}

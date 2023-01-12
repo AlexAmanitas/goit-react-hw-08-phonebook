@@ -13,6 +13,8 @@ const StyledLink = styled(NavLink)`
 `;
 
 export const AuthNav = () => {
+  console.log('AuthNavComponent');
+
   return (
     <nav>
       <StyledLink to="/goit-react-hw-08-phonebook/register">

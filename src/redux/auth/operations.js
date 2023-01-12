@@ -13,10 +13,17 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+export const reset = createAsyncThunk('auth/reset', (_, thunkAPI) => {
+  console.log('resetOperations');
+  try {
+  } catch (error) {}
+});
+
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
-    console.log(credentials);
+    console.log('registerOperations');
+    // console.log(credentials);
     try {
       const res = await axios.post('/users/signup', credentials);
       // After successful registration, add the token to the HTTP header
@@ -35,13 +42,15 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
+    console.log('logInOperations');
     try {
       const res = await axios.post('/users/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
 
       return res.data;
-    } catch {
+    } catch (error) {
+      console.log(error.message);
       // console.log(getState().auth.error);
       return rejectWithValue('Incorrect login or password');
     }
@@ -55,6 +64,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
+    console.log('logOutOperations');
     try {
       await axios.post('/users/logout');
       // After a successful logout, remove the token from the HTTP header
@@ -81,7 +91,7 @@ export const refreshUser = createAsyncThunk(
       // If there is no token, exit without performing any request
       return rejectWithValue('Unable to fetch user');
     }
-
+    console.log('refreshUserOperations');
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);

@@ -14,9 +14,11 @@ const LoginForm = () => {
         password: form.elements.password.value,
       })
     );
-    console.log('object');
+    console.log('LoginFormReset');
     form.reset();
   };
+
+  console.log('LoginFormComponent ');
 
   return (
     <Box

@@ -12,6 +12,8 @@ const Filter = () => {
     dispatch(setFilter(evt.currentTarget.value));
   };
 
+  console.log('FilterComponent');
+
   return (
     <>
       <TextField
