@@ -23,14 +23,15 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     console.log('registerOperations');
-    // console.log(credentials);
+    console.log('cred', credentials);
     try {
       const res = await axios.post('/users/signup', credentials);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
-    } catch {
-      return rejectWithValue('User already registered');
+    } catch (error) {
+      console.log(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -42,7 +43,7 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
-    console.log('logInOperations');
+    console.log('logInOperations', credentials);
     try {
       const res = await axios.post('/users/login', credentials);
       // After successful login, add the token to the HTTP header
@@ -52,7 +53,7 @@ export const logIn = createAsyncThunk(
     } catch (error) {
       console.log(error.message);
       // console.log(getState().auth.error);
-      return rejectWithValue('Incorrect login or password');
+      return rejectWithValue(error.message);
     }
   }
 );
