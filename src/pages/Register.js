@@ -22,7 +22,7 @@ export default function Register() {
 
   useEffect(() => {
     dispatch(reset());
-  }, []);
+  }, [dispatch]);
 
   if (error) {
     setTimeout(() => {

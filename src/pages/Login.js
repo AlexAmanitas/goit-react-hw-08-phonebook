@@ -11,7 +11,7 @@ export default function Login() {
 
   useEffect(() => {
     dispatch(reset());
-  }, []);
+  }, [dispatch]);
 
   if (error) {
     setTimeout(() => {
