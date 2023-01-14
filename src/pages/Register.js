@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import RegisterForm from '../components/RegisterForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset } from 'redux/auth/operations';
+import { useEffect } from 'react';
 
 export const CustomBox = styled(Box)`
   max-width: 400px;
@@ -18,10 +19,15 @@ export const CustomBox = styled(Box)`
 export default function Register() {
   const error = useSelector(state => state.auth.error);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
+
   if (error) {
     setTimeout(() => {
       dispatch(reset());
-    }, 3000);
+    }, 5000);
   }
   console.log('RegisterPage');
 

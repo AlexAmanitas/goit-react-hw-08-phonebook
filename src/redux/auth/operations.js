@@ -13,9 +13,10 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-export const reset = createAsyncThunk('auth/reset', (_, thunkAPI) => {
+export const reset = createAsyncThunk('auth/reset', (err, thunkAPI) => {
   console.log('resetOperations');
   try {
+    return err;
   } catch (error) {}
 });
 
@@ -29,8 +30,8 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      console.log(error.message);
-      return rejectWithValue(error.message);
+      console.log(error);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -49,8 +50,8 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      console.log(error.message);
-      return rejectWithValue(error.message);
+      console.log(error);
+      return rejectWithValue('Wrong username or password');
     }
   }
 );

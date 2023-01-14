@@ -14,9 +14,9 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     console.log('ExtraReducersBuilder');
-    builder.addCase(reset.fulfilled, state => {
+    builder.addCase(reset.fulfilled, (state, action) => {
       console.log('resetFulfilled');
-      state.error = null;
+      state.error = action.payload;
     });
     builder
       .addCase(register.pending, state => {
