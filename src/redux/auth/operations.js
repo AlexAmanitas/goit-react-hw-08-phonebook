@@ -22,8 +22,7 @@ export const reset = createAsyncThunk('auth/reset', (_, thunkAPI) => {
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
-    console.log('registerOperations');
-    console.log('cred', credentials);
+    console.log('registerOperations', credentials);
     try {
       const res = await axios.post('/users/signup', credentials);
       // After successful registration, add the token to the HTTP header
@@ -48,11 +47,9 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
-
       return res.data;
     } catch (error) {
       console.log(error.message);
-      // console.log(getState().auth.error);
       return rejectWithValue(error.message);
     }
   }
