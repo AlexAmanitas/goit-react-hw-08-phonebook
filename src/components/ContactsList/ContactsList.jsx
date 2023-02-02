@@ -12,7 +12,6 @@ import ContactsListItem from 'components/ContactsItem';
 const ContactsList = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
   const dispatch = useDispatch();
-
   const filter = useSelector(selectFilter);
 
   useEffect(() => {
@@ -23,18 +22,15 @@ const ContactsList = () => {
     }
   }, [dispatch, filter]);
 
-  const handleOnClick = evt => {
-    dispatch(deleteContacts(evt.currentTarget.id));
+  const handleOnClick = id => {
+    dispatch(deleteContacts(id));
   };
-
-  console.log('ContactListComponent');
 
   return (
     <List>
       {isLoading && <b>Loading contacts...</b>}
       {error && <b>{error}</b>}
-      {items.map(el => {
-        const { name, number, id } = el;
+      {items.map(({ name, number, id }) => {
         return (
           <ContactsListItem
             key={id}
