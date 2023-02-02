@@ -1,5 +1,4 @@
-import { IconButton, List, ListItem, ListItemText } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { List } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,6 +7,7 @@ import {
   filterContacts,
 } from 'redux/contacts/operations';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';
+import ContactsListItem from 'components/ContactsItem';
 
 const ContactsList = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
@@ -36,17 +36,13 @@ const ContactsList = () => {
       {items.map(el => {
         const { name, number, id } = el;
         return (
-          <ListItem key={id} alignItems="flex-start">
-            <ListItemText variant="body1" component="span" sx={{ mr: '10px' }}>
-              {name}
-            </ListItemText>
-            <ListItemText variant="body1" component="span" sx={{ mr: '10px' }}>
-              {number}
-            </ListItemText>
-            <IconButton id={id} type="button" onClick={handleOnClick}>
-              <DeleteIcon />
-            </IconButton>
-          </ListItem>
+          <ContactsListItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelete={handleOnClick}
+          />
         );
       })}
     </List>
